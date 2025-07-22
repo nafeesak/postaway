@@ -1,13 +1,12 @@
 import  UserModel  from "./user.model.js";
 import jwt from 'jsonwebtoken';
-export class UserController{
-    signUpUser(req,res){
+   export const signUpUser=(req,res)=>{
         const {name,email,password,type}=req.body;
         const user=UserModel.signUp(name,email,password,type);
         res.status(201).send(user);
 
     }
-    signInUser(req,res){
+    export const signInUser=(req,res)=>{
         const result=UserModel.signIn(req.body.email,req.body.password);
         if(!result){
             return res.status(400).send("Incorrect Creditial")
@@ -23,4 +22,3 @@ export class UserController{
             return res.status(200).send(token)
         }
     }
-}
